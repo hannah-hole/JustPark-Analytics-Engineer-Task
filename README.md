@@ -99,6 +99,3 @@ How you choose to structure your solution is completely up to you. What we're lo
 - a well-documented project (i.e. a colleague could maintain and extend the work without difficulty)
 - a project that fulfils the two objectives stated at the beginning
 
-We estimate that this will take 1-2 hours, to be done at the candidate's convenience. It's okay if you take longer, just tell us how long you took when you submit your solution.
-
-Feel free to ask clarifying questions about this exercise. You can email these to `padraig.alton@justpark.com`.
