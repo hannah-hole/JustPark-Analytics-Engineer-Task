@@ -32,10 +32,6 @@ models:
   - name: intm_date__tariffs
     description: Intermediate model at the tariff date grain
     columns:
-      - name: date_tariffs_id
-        description: Primary key for the set of dates and day of the week the tariff is valid for
-        tests:
-          - not_null
       - name: tariff_id
         description: References tariff_id in intm_pricing__tariffs and intm_pricing__prices. 
       - name: day_of_week
