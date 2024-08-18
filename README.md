@@ -30,6 +30,7 @@ Poetry was used to manage dependencies and create a virtual environment for the 
 
     ```bash
   poetry run dbt docs generate
+  poetry run dbt docs serve
 
 
 # Task Instructions
