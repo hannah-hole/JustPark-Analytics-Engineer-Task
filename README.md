@@ -1,4 +1,38 @@
-# analytics_engineer_exercise
+# JustPark Analytics Engineer Task
+
+## Overview
+
+This repository contains my submission for the JustPark Analytics Engineer dbt task. The goal of this project was to design and implement a data model using dbt that effectively supports two key analytical objectives:
+
+1. **Current Pricing Lookup:** The ability to look up the current price charged for parking sessions of various durations at specific locations, based on different days of the week.
+2. **Historical Pricing Changes:** The ability to lookup how the price for a one-hour parking session at a specific location has changed over time.
+
+## Data Modeling Approach
+
+I opted for a star schema to structure the data, with the **`Prices`** table as the central fact table. This table records the application of tariffs to specific locations over time. I also created two key dimension tables:
+
+- **`Tariffs` Dimension:** Contains information about each tariff, including the pricing structure, duration, and applicable time periods.
+- **`Dates` Dimension:** Provides the date context, enabling analysis of pricing trends over specific days, months, and years.
+
+These tables are linked via the `tariff_id`
+
+## Project Details
+
+Poetry was used to manage dependencies and create a virtual environment for the project.
+
+- **Run dbt models:** Run dbt models with:
+      ```bash
+  poetry run dbt run
+  
+- **`JustPark.py` File:** This Python file contains sample code demonstrating how to access and query the results of the dbt project and answer the two objectives. Visual Studio Code was used as the IDE for this project. 
+
+- **Documentation:** You can generate more detailed documentation for the dbt models by running the following command:
+
+    ```bash
+  poetry run dbt docs generate
+
+
+# Task Instructions
 
 This is a technical task for mid-level analytics engineers.
 
