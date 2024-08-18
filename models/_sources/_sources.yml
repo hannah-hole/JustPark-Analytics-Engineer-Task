@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+
+  - name: pricing
+    description: Tables stored in a local DuckDB file-based warehouse
+    schema: main
+    tables:
+
+      - name: prices
+        description: |
+          Each price is connected to a set of rules (in the rules table).
+          A price represents the full set of logic needed to determine the
+          cost of parking.
+        columns:
+          - name: price_id
+            description: ID for a certain set of pricing logic
+          - name: location_id
+            description: The parking space ID at which the price was set
+          - name: pricing_mode
+            description: Either AUTOMATED or MANUAL
+          - name: created_at
+            description: Indicates when the price was created
+          - name: deleted_at
+            description: |
+              Indicates when the price was replaced (null = price still in effect)
+          - name: rule_id
+            description: |
+              Foreign key to the (set of) rules defining the pricing logic
+
+      - name: rules
+        description: |
+          Each rule is linked to a tariff, where a tariff is member of the set of rules 
+        columns:
+          - name: rule_id
+            description: Primary key for the set of rules defining price logic
+          - name: created_at
+            description: Indicates when this set of rules was created
+          - name: tariffs
+            description: |
+              Unstructured JSON data: the complete set of rules defining prices
+              for parking sessions with different start times and duration that
+              were in effect when the linked price was active

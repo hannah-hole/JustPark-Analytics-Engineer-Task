@@ -1,0 +1,67 @@
+version: 2
+
+models:
+
+  - name: dates
+    description: Table for dates applicable to the tariff
+    columns:
+      - name: date_tariffs_id
+        description: Primary key for the set of dates and day of the week the tariff is valid for
+        tests:
+          - not_null
+          - unique
+      - name: tariff_id
+        description: References tariff_id in intm_pricing__tariffs and intm_pricing__prices. 
+      - name: day_of_week
+        description: Day of the week that the tariff_id is valid for, where day is represented by an integer ranging from 0 to 6
+      - name: valid_from
+        description: Start date that the tariff_id is valid from 
+      - name: valid_to
+        description: End date that the tariff_id is valid until
+
+  - name: prices
+    description: Table for pricing rules 
+    columns:
+      - name: price_id  
+        description: Primary key for the set of rules you can use to calculate the cost of a parking session
+        tests:
+          - not_null
+          - unique
+      - name: tariff_id  
+        description: References tariff_id in dates and tariffs. 
+      - name: location_id
+        description: The parking space ID at which the price was set
+      - name: pricing_mode
+        description: Either AUTOMATED or MANUAL
+      - name: created_at
+        description: Indicates when the price was created
+      - name: deleted_at
+        description: |
+          Indicates when the price was replaced (null = price still in effect)
+
+  - name: tariffs
+    description: Table for tariff rules 
+    columns:
+      - name: pricing_tariffs_id
+        description: Primary key for the duration, time and price of the tariff 
+        tests:
+          - not_null
+          - unique
+      - name: tariff_id
+        description: References tariff_id in intm_date__tariffs and intm_pricing__prices. 
+      - name: price
+        description: Price associated with the tariff
+      - name: duration
+        description: Duration for which the price applies 
+      - name: applies_from
+        description: Start time that the tariff is valid from
+      - name: applies_to
+        description: Start time that the tariff is valid to
+      - name: interval
+        description: Unit of time that duration refers to (e.g hours)
+      - name: repeat
+        description: Indicates if the tariff repeats
+      - name: proportional
+        description: Indicates if the tariff is proportional
+      - name: monthly
+        description: Indicates if the tariff applies monthly
